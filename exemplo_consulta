@@ -1,0 +1,21 @@
+#cmd -> pip install oracledb
+
+import oracledb
+
+con = oracledb.connect(user='rm97898', password='210904', dsn='oracle.fiap.com.br/orcl')
+print("Database version:", con.version)
+
+cur = con.cursor() #objeto que faz os metodos com comando SQL
+cur.execute('SELECT * FROM RM97898.EMPREGADO')
+
+registros = cur.fetchall() #recuperar os resuldados da consulta
+
+info = registros[0]
+print('Nome:', info[1])
+print('Cargo:', info[2])
+
+# for reg in registros:
+#     print(reg)
+
+cur.close() #fechar cursor
+con.close() #fechar conexão
